@@ -1,0 +1,21 @@
+server:
+  port: 8050
+
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8761/eureka
+
+zuul:
+  routes:
+    app-hello:
+      path: /user/**
+      serviceId: provider-user
+      
+app-sidecar:                  #通过sidecar调用nodejs的服务
+      path: /sidecar/**
+      serviceId: sidecar
